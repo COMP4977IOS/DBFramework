@@ -18,15 +18,17 @@ public class Member {
         self.record = memberRecord
     }
     
-    init(crew: CKReference, diaries:[CKReference], firstName: String, items:[CKReference], lastName: String, stats:[CKReference], status: String){
+    init(crew: CKReference, diaries:[CKReference], firstName: String, health:Int, hunger:Int, items:[CKReference], lastName: String, stamina:Int, status: String){
         self.record = CKRecord(recordType: "Member")
         
         self.record!.setObject(crew, forKey: "crew")
         self.record!.setObject(diaries, forKey: "diary")
         self.record!.setObject(firstName, forKey: "firstName")
+        self.record!.setObject(health, forKey: "health")
+        self.record!.setObject(hunger, forKey: "hunger")
         self.record!.setObject(items, forKey: "item")
         self.record!.setObject(lastName, forKey: "lastName")
-        self.record!.setObject(stats, forKey: "stat")
+        self.record!.setObject(stamina, forKey: "stamina")
         self.record!.setObject(status, forKey: "status")
     }
     
@@ -53,6 +55,22 @@ public class Member {
         self.record?.setObject(firstName, forKey: "firstName")
     }
     
+    func getHealth() -> Int? {
+        return self.record?.objectForKey("health") as? Int
+    }
+    
+    func setHealth(health:Int) -> Void {
+        self.record?.setObject(health, forKey: "health")
+    }
+    
+    func getHunger() -> Int? {
+        return self.record?.objectForKey("hunger") as? Int
+    }
+    
+    func setHunger(hunger:Int) -> Void {
+        self.record?.setObject(hunger, forKey: "hunger")
+    }
+    
     func getItems() -> [CKReference]? {
         return self.record?.objectForKey("item") as? [CKReference]
     }
@@ -69,12 +87,12 @@ public class Member {
         self.record?.setObject(lastName, forKey: "lastName")
     }
     
-    func getStats() -> [CKReference]? {
-        return self.record?.objectForKey("stat") as? [CKReference]
+    func setStamina(stamina:Int) -> Void {
+        self.record?.setObject(stamina, forKey: "stamina")
     }
     
-    func setStats(stats:[CKReference]) -> Void {
-        self.record?.setObject(stats, forKey: "stat")
+    func getStamina() -> Int? {
+        return self.record?.objectForKey("stamina") as? Int
     }
     
     func getStatus() -> String? {
