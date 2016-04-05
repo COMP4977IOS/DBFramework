@@ -18,13 +18,14 @@ public class Crew {
         self.record = crewRecord
     }
     
-    init(caloriesPoints: Int, challengeID: Int, gameLevel: Int, members: [CKReference], name: String, resources:[CKReference], user: CKReference){
+    init(caloriesPoints: Int, challengeID: Int, gameLevel: Int, members: [CKReference], missions:[CKReference], name: String, resources:[CKReference], user: CKReference){
         self.record = CKRecord(recordType: "Crew")
         
         self.record?.setObject(caloriesPoints, forKey: "caloriePoints")
         self.record?.setObject(challengeID, forKey: "challengeID")
         self.record?.setObject(gameLevel, forKey: "gameLevel")
         self.record?.setObject(members, forKey: "member")
+        self.record?.setObject(missions, forKey: "mission")
         self.record?.setObject(name, forKey: "name")
         self.record?.setObject(resources, forKey: "resource")
         self.record?.setObject(user, forKey: "user")
@@ -66,6 +67,14 @@ public class Crew {
     
     func setMemberReferences(members: [CKReference]) -> Void {
         self.record?.setObject(members, forKey: "member")
+    }
+    
+    func getMissions() -> [CKReference]? {
+        return self.record?.objectForKey("mission") as? [CKReference]
+    }
+    
+    func setMissions(missions: [CKReference]) -> Void {
+        self.record?.setObject(missions, forKey: "mission")
     }
     
     func getName() -> String? {
